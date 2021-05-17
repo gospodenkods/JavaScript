@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>first</title>
+	<link rel="stylesheet" href="style.css">
+	<script>
+
+
+		function luckyTicket() {
+			var ticketNumber = +prompt('Введите шестизначный номер билета: '),
+				number1,
+				number2,
+				number3,
+				number4,
+				number5,
+				number6,
+				temp;
+			number1 = (ticketNumber - ticketNumber % 100000) / 100000;
+			temp = ticketNumber - number1 * 100000;
+			number2 = (temp - temp % 10000) / 10000;
+			temp = temp - number2 * 10000;
+			number3 = (temp - temp % 1000) / 1000;
+			temp = temp - number3 * 1000;
+			number4 = (temp - temp % 100) / 100;
+			temp = temp - number4 * 100;
+			number5 = (temp - temp % 10) / 10;
+			number6 = temp - number5 * 10;
+			alert('Билетик c №' + ticketNumber + ' является счастливым (True or False)?\nОтвет: '
+				+ (number1 + number2 + number3 == number4 + number5 + number6));
+		}
+
+		function authorizationAge() {
+			var userAge = +prompt('Введите Ваш возраст: ');
+			var message = (userAge >= 18) ? 'Добро пожаловать на сайт!' :
+				'Внимание! Вы входите в закрытый раздел сайта!';
+			alert(message);
+		}
+
+		function converterTemperature() {
+			var degreeCelsius = +prompt('Введите температуру в градусах по Цельсию: ');
+			alert(degreeCelsius + ' градусов по Цельсию = ' + ((9 / 5) * degreeCelsius + 32)
+				+ ' градусов по Фаренгейту');
+		}
+
+		function adminVasya() {
+			var name = '"Василий"';
+			alert(admin = name);
+		}
+
+		function oneThousand() {
+			var a = 1000,
+				b = '108',
+				c = a + b;
+			alert('a=' + a + ' (' + typeof (a) + ') + b=' + b + ' (' + typeof (b) + ') = ' + c);
+		}
+
+		function asyncDefer() {
+			document.getElementById('pasteText').style.display = "block";
+		}
+
+	</script>
+</head>
+
+<body>
+	<ul class="ul"><b>Домашнее задание №1:</b>
+		<li><a href="#" onclick="converterTemperature();">Конвертер температур</a></li>
+		<li><a href="#" onclick="adminVasya();">Админ "Василий"</a></li>
+		<li><a href="#" onclick="oneThousand();">1000 + "108"</a><sup>*</sup></li>
+		<li><a href="#" onclick="asyncDefer();">async и defer</a><sup>*</sup></li>
+		<li><a href="#" onclick="luckyTicket();">Счастливый билетик</a><sup>*</sup></li>
+		<li><a href="#" onclick="authorizationAge();">Авторизация по возрасту</a><sup>*</sup></li>
+	</ul>
+
+</body>
+
+</html>
