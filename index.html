@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+	<title>lesson_5</title>
+</head>
+<body>
+	<script>
+
+		function startScript() {
+			var pasteResult = document.getElementById('pasteResult'),
+				pasteTd,
+
+				// фигуры - белые
+				figuresWhite = [
+					// пешки
+					['&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;', '&#9817;'],
+					// основные фигуры
+					['&#9814;', '&#9816;', '&#9815;', '&#9813;', '&#9812;', '&#9815;', '&#9816;', '&#9814;']
+				],
+
+				// фигуры - черные
+				figuresBlack = [
+					// основные фигуры
+					['&#9820;', '&#9822;', '&#9821;', '&#9819;', '&#9818;', '&#9821;', '&#9822;', '&#9820;'],
+					// пешки
+					['&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;', '&#9823;']
+				];
+
+
+			// создаем <table>
+			var boardTable = document.createElement('table');
+  			pasteResult.appendChild(boardTable);
+
+  			for (var row = 1; row <= 10; row++) {
+				// создаем <tr>
+				var boardTr = document.createElement('tr');
+	  			boardTable.appendChild(boardTr);
+
+	  			for (var col = 1; col <= 10; col++) {
+
+					// создаем <td>
+					var boardTd = document.createElement('td');
+
+					pasteTd = '';
+
+					// цифры по вертикали
+					if (row > 1 && row < 10 && (col == 1 || col == 10)) {
+						boardTd.className = 'boardNumbers';
+						pasteTd+= 8 - row + 2;
+					}
+
+					// столбцы в таблице со второго по девятый
+					if (col > 1 && col < 10) {
+
+						// раскраска доски, либо сделать через CSS
+						if (((row%2 != 0 && col%2 == 0) || (row%2 == 0 && col%2 != 0)) && (row > 1 && row < 10)) {
+							boardTd.style.background = 'gray';
+						}
+
+						// буквы по горизонтали
+						if (row == 1 || row == 10) {
+							boardTd.className = 'boardLetters';
+							pasteTd+= '&#' + (65 + col - 2); // HTML - A-H
+						}
+
+						// фигуры - белые
+						if (row == 8 || row == 9) {
+							boardTd.className = 'boardFigures';
+							pasteTd+= figuresWhite[row-8][col-2];
+						}
+
+						// фигуры - черные
+						if (row == 2 || row == 3) {
+							boardTd.className = 'boardFigures';
+							pasteTd+= figuresBlack[row-2][col-2];
+						}
+
+					}
+
+					boardTd.innerHTML = pasteTd;
+					boardTr.appendChild(boardTd);
+	  			}
+  			}
+
+		}
+
+	</script>
+
+	<div id="textTask">
+		<p style="p">
+			<a href="javascript:void(0);" onclick="startScript();">Поехали! </a>
+		</p>
+
+	</div>
+
+	<div id="pasteResult">
+	</div>
+
+</body>
+</html>
